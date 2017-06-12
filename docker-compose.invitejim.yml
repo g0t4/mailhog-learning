@@ -1,0 +1,13 @@
+# https://github.com/mailhog/MailHog/blob/master/docs/JIM.md
+# chaos monkey for testing resiliency of mail clients
+version: "3.1"
+
+services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    # entrypoint is mailhog, so just pass CLI args for tweaking jim
+    # i.e. disconnect 20% of the time
+    command: -invite-jim -jim-disconnect=0.2

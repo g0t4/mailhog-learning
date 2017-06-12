@@ -1,0 +1,16 @@
+version: "3.1"
+
+services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    environment:
+      MH_MONGO_URI: mongo:27017
+      MH_STORAGE: mongodb
+  mongo:
+    image: mongo
+    ports:
+      # not necessary to publish mongo port, but nice to poke around
+      - "27017:27017"
